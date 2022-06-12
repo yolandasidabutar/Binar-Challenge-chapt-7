@@ -213,7 +213,7 @@ module.exports = {
                 var finalResult = {
                     roomId: input.roomId,
                     roomname: findRoom.room_name,
-                    notification: 'GAME IS OVER, THE WINNER IS PLAYER WITH',
+                    notification: 'GAME IS OVER, THE WINNER IS PLAYER',
                     gameHistory: findGame
                 }
                 //GAME SCORE
@@ -250,9 +250,9 @@ module.exports = {
                 if (p1_win == p2_win) {
                     finalResult.notification = `GAME IS DRAW`
                 } else if (p1_win > p2_win) {
-                    finalResult.notification = finalResult.notification + ' 1 ' + ' ID: ' + player1_win.id +' AND USERNAME: '+ player1_win.username
+                    finalResult.notification = finalResult.notification + ' 1 ' + 'WITH ' +'ID: ' + player1_win.id +' AND USERNAME: '+ player1_win.username
                 } else {
-                    finalResult.notification = finalResult.notification + ' 2 ' + ' ID: ' + player2_win.id +' AND USERNAME: '+ player2_win.username
+                    finalResult.notification = finalResult.notification + ' 2 ' + 'WITH '+ 'ID: ' + player2_win.id +' AND USERNAME: '+ player2_win.username
                 }
                 return res.status(200).json(finalResult)
             }
