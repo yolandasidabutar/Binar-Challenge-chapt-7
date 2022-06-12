@@ -213,7 +213,7 @@ module.exports = {
                 var finalResult = {
                     roomId: input.roomId,
                     roomname: findRoom.room_name,
-                    notification: 'GAME IS OVER, THE WINNER IS',
+                    notification: 'GAME IS OVER, THE WINNER IS PLAYER WITH',
                     gameHistory: findGame
                 }
                 //GAME SCORE
@@ -234,13 +234,25 @@ module.exports = {
                         p2_win = p2_win + 1
                     }
                 })
+
+                //NOTIF THE WINNER IS
+                const player1_win = await game_user.findOne({
+                    where: { id: findRoom.p1_id },
+                    attributes : ['id', 'username']
+                })
+
+                const player2_win = await game_user.findOne({
+                    where: { id: findRoom.p2_id  },
+                    attributes : ['id', 'username']
+                })
+
                 //CONDITION 
                 if (p1_win == p2_win) {
                     finalResult.notification = `GAME IS DRAW`
                 } else if (p1_win > p2_win) {
-                    finalResult.notification = finalResult.notification + 'PLAYER 1'
+                    finalResult.notification = finalResult.notification + ' ID: ' + player1_win.id +' AND USERNAME: '+ player1_win.username
                 } else {
-                    finalResult.notification = finalResult.notification + 'PLAYER 2'
+                    finalResult.notification = finalResult.notification + ' ID: ' + player2_win.id +' AND USERNAME: '+ player2_win.username
                 }
                 return res.status(200).json(finalResult)
             }

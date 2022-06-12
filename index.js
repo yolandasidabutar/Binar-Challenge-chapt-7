@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const route = require('./routes/router')
 const app = express();
-const PORT = 8000;
+const PORT = 3000;
 
 //VIEW ENGINE
 app.use(express.urlencoded({extended: false}));
