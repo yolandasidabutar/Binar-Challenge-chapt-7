@@ -250,9 +250,9 @@ module.exports = {
                 if (p1_win == p2_win) {
                     finalResult.notification = `GAME IS DRAW`
                 } else if (p1_win > p2_win) {
-                    finalResult.notification = finalResult.notification + ' ID: ' + player1_win.id +' AND USERNAME: '+ player1_win.username
+                    finalResult.notification = finalResult.notification + ' 1 ' + ' ID: ' + player1_win.id +' AND USERNAME: '+ player1_win.username
                 } else {
-                    finalResult.notification = finalResult.notification + ' ID: ' + player2_win.id +' AND USERNAME: '+ player2_win.username
+                    finalResult.notification = finalResult.notification + ' 2 ' + ' ID: ' + player2_win.id +' AND USERNAME: '+ player2_win.username
                 }
                 return res.status(200).json(finalResult)
             }
@@ -280,23 +280,17 @@ module.exports = {
             //CHECK OTHER PLAYER PICK
             if (gameResult.yourRole == 1 && gameResult.gameHistory[gameResult.onGoingRound - 1].p1_pick != null) {
                 return res.status(200).json({
-                    roomId: input.roomId,
-                    roomName: findRoom.room_name,
-                    warning: `WAIT YOUR OPPONENT CHOOSE`,
+                    WARNING: `WAIT YOUR OPPONENT CHOOSE`,
                     onGoingRound: gameResult.onGoingRound,
                     yourRole: player,
-                    gameHistory: findGame,
                 })
             }
             //CHECK OTHER PLAYER PICK
             if (gameResult.yourRole == 2 && gameResult.gameHistory[gameResult.onGoingRound - 1].p2_pick != null) {
                 return res.status(200).json({
-                    roomId: input.roomId,
-                    roomName: findRoom.room_name,
-                    warning: "WAIT YOUR OPPONENT CHOOSE",
+                    WARNING: `WAIT YOUR OPPONENT CHOOSE`,
                     onGoingRound: gameResult.onGoingRound,
                     yourRole: player,
-                    gameHistory: findGame
                 })
             }
             //PLAYER PICK UPDATE TO GAME_HISTORY DB
